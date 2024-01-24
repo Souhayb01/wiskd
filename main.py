@@ -2,7 +2,6 @@ import requests
 import telebot
 from telebot import types
 import json
-from server import keep_alive
 from geopy.geocoders import Nominatim
 from func import *
 
