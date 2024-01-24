@@ -360,6 +360,5 @@ def callback_handler(call):
       json.dump(user_urls, file)
 
 
-keep_alive()
 
 bot.infinity_polling()
