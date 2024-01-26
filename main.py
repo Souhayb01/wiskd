@@ -25,6 +25,13 @@ commands = [
 bot.set_my_commands(commands=commands)
 
 
+@bot.message_handler(commands=['wiw2'])
+def phit2o(message):
+  for user in user_urls['users']:
+    if has_chat_id(user_urls,user['id']):
+     bot.send_message(user['chat_id'],'bot is working')
+    else:
+      bot.send_message(message.chat.id,'wiw')
 @bot.message_handler(commands=['wiw'])
 def phit2o(message):
 
@@ -51,9 +58,12 @@ def phito(message):
   Lang = "ar"
   if check_user_id('users_data.json', user_id):
     for user in user_urls['users']:
-      user['language'] = Lang
+        user['language'] = Lang
+        if not has_chat_id(user_urls,user['id']):
+         chat_id= message.chat.id
+         add_chat_id(user_urls,user['id'],chat_id)
   else:
-    new_user = {"id": user_id, "language": Lang}
+    new_user = {"id": user_id, "language": Lang,"chat_id":message.chat.id}
     user_urls["users"].append(new_user)
   bot.delete_message(message.chat.id, message.message_id)
 
@@ -68,7 +78,8 @@ def phito(message):
   bot.send_message(message.chat.id,
                    "مرحبا بك في بوت تتبع طرود من علي اكسبراس",
                    reply_markup=markup)
-
+  with open('users_data.json', 'w') as file:
+   json.dump(user_urls, file)
 
 @bot.message_handler(commands=['my_order'])
 def menu_handler(message):
