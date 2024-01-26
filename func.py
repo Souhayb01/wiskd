@@ -70,6 +70,11 @@ def get_location(tracking_number):
   if tracking_number[-2:] == "UZ":
     return get_longitude_for_location("Tashkent", "Uzbekistan")
 
+def has_chat_id(data,user_id):
+ for user in data["users"]:
+    if user["id"] == user_id:
+        return "chat_id" in user
+ return False
 
 def short_data(url, tracking_number):
   try:
