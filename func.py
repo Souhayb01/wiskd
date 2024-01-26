@@ -76,6 +76,15 @@ def has_chat_id(data,user_id):
         return "chat_id" in user
  return False
 
+
+
+def add_chat_id(data,user_id, new_chat_id):
+    for user in data["users"]:
+        if user["id"] == user_id:
+            user["chat_id"] = new_chat_id
+            return
+
+
 def short_data(url, tracking_number):
   try:
     response = requests.get(url)
