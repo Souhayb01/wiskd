@@ -30,8 +30,8 @@ def phit2o(message):
   for user in user_urls['users']:
     if has_chat_id(user_urls,user['id']):
      bot.send_message(user['chat_id'],'bot is working')
-    else:
-      bot.send_message(message.chat.id,'wiw')
+    
+  bot.send_message(message.chat.id,'wiw')
 @bot.message_handler(commands=['wiw'])
 def phit2o(message):
 
