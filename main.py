@@ -25,6 +25,19 @@ commands = [
 bot.set_my_commands(commands=commands)
 
 
+@bot.message_handler(commands=['pub'])
+def publish(message):
+  bot.send_message(message.chat.id,"send photo")
+  bot.register_next_step_handler(message,publish_photo)
+  
+def publish_photo(message):
+  photo=message.photo[0].file_id
+  caption=message.caption
+  for user in user_urls["users"]:
+    if "chat_id" in user:
+     chat_id = user["chat_id"]
+     bot.send_photo(chat_id=chat_id,photo=photo,caption=caption)
+
 @bot.message_handler(commands=['wiw2'])
 def phit2o(message):
   for user in user_urls['users']:
